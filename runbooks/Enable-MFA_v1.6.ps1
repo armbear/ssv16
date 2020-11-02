@@ -1,4 +1,8 @@
-if($Enforce_MFA_Enabled -Like "Yes") {
+#Automation Variables
+$MFA_Enabled = Get-AutomationVariable -Name "MFA_Enabled"
+
+#Enable MFA Policies
+if($MFA_Enabled -Like "Yes") {
   $cred = Get-AutomationPSCredential -Name "MSOnline"
   Connect-AzureAD -Credential $cred
   Connect-MsolService -Credential $cred
