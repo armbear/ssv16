@@ -168,6 +168,14 @@ if($DLPRules_Enabled -Like "Yes") {
                 Write-Output '***DLP for France Personally Identifiable Information (PII) Data Installed'
             }
         }
+        "GDPR" {
+            if ($Clientdlp.Name -Like "General Data Protection Regulation (GDPR)") {
+                Write-Output '***DLP for General Data Protection Regulation (GDPR) Already Exists -- DLP Rule Not Installed'
+            } else {
+                New-DlpPolicy -Name "General Data Protection Regulation (GDPR)" -Mode $DLPRules_DeploymentMode -Template 'General Data Protection Regulation (GDPR)';
+                Write-Output '***DLP for General Data Protection Regulation (GDPR) Installed'               
+            }
+        }
         "Germany"{
             if ($Clientdlp.Name -Like "Germany Financial Data") {
                 Write-Output '***DLP for Germany Financial Data Already Exists -- DLP Rule Not Installed'
